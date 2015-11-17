@@ -1,0 +1,63 @@
+<html>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<body>
+<form action='/artifacts/addArtifact/' method="post" id="formData">
+    Type of object:<input type="text" name="object_type"><br>
+    name of recorder:<input type="text" name="recorde_name"><br>
+    date of recording:<input type="date" name="date"><br>
+    description:<input type="text" name="description"><br>
+    latitude:<input type="text" name="latitude"><br>
+    longitude:<input type="text" name="longitude"><br>
+    <select id="lot_id" name="lot_id">
+        <option value="" disabled selected>Choose lot</option>
+    </select><br>
+
+    <button type="submit" id="submitButton"
+            name="submitButton" value="Submit">Add
+    </button>
+
+</form>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    $.get('/lots/getLot/', function (data) {
+        for (var j = 0; j < data.listOfLots.length; j++) {
+            $('#lot_id').append('<option value="' + data.listOfLots[j].lot_id + '">' + data.listOfLots[j].lot_name + '</option>');
+        }
+    });
+
+    $('formData').submit(function(event) {
+
+        var e = document.getElementById("lot_id");
+        var strUser = e.options[e.selectedIndex].value;
+        var formData = {
+            'objecttype'          : $('input[name=object_type]').val(),
+            'nameofrecorder'             : $('input[name=recorde_name]').val(),
+            'dateofrecording'    : $('input[name=date]').val(),
+            'description' : $('input[name=description]').val(),
+            'latitude'             : $('input[name=latitude]').val(),
+            'longitude'    : $('input[name=longitude]').val(),
+            'lot_id':     strUser
+        };
+
+        $.ajax({
+            type        : 'POST',
+            url         : '/artifact/add/',
+            data        : formData,
+            dataType    : 'json',
+            encode          : true
+        })
+                .done(function(data) {
+
+                    console.log(data);
+
+                });
+
+        event.preventDefault();
+    });
+
+</script>
+

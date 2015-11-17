@@ -1,0 +1,71 @@
+<html>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<body>
+<form action='/site/addNewLot/' method="post" id="formData">
+    average maximum depth:<input type="text" name="max_depth"><br>
+    lot name:<input type="text" name="lot_name"><br>
+    <select id="fno" name="fno">
+        <option value="" disabled selected>Choose field or site</option>
+    </select><br>
+
+    <select id="cno" name="cno">
+        <option value="" disabled selected>Choose context</option>
+    </select><br>
+
+    <button type="submit" id="submitButton"
+            name="submitButton" value="Submit">Add
+    </button>
+
+</form>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    $.get('/site/listOfSites/', function (data) {
+        for (var j = 0; j < data.listOfSites.length; j++) {
+            $('#fno').append('<option value="' + data.listOfSites[j].field_site_no + '">' + data.listOfSites[j].location_name + '</option>');
+        }
+    });
+
+    $.get('/context/', function (data) {
+        for (var j = 0; j < data.detailsOfContext.length; j++) {
+            $('#cno').append('<option value="' + data.detailsOfContext[j].context_id + '">' + data.detailsOfContext[j].description + '</option>');
+        }
+    });
+
+    $('formData').submit(function(event) {
+
+        // get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var e = document.getElementById("fno");
+        var strUser = e.options[e.selectedIndex].value;
+
+        var c = document.getElementById("cno");
+        var strUser1 = c.options[c.selectedIndex].value;
+        var formData = {
+            'max_depth'              : $('input[name=max_depth]').val(),
+            'lot_name':$('input[name=lot_name]').val(),
+            'fno':     strUser,
+            'cno': strUser1
+        };
+
+        $.ajax({
+            type        : 'POST',
+            url         : '/site/addNewLot',
+            data        : formData,
+            dataType    : 'json',
+            encode          : true
+        })
+                .done(function(data) {
+
+                    console.log(data);
+
+                });
+
+        event.preventDefault();
+    });
+
+</script>
+

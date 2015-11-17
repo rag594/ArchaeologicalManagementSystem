@@ -1,0 +1,61 @@
+<html>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<body>
+<form action='/projects/add/' method="post" id="formData">
+    project name:<input type="text" name="pro_name"><br>
+    principal investigator:<input type="text" name="princ_invest"><br>
+    project director:<input type="text" name="pro_direc"><br>
+    amount invested:<input type="text" name="amount_invest"><br>
+    <select id="comp_name" name="comp_name">
+        <option value="" disabled selected>Choose company name</option>
+    </select><br>
+
+    <button type="submit" id="submitButton"
+            name="submitButton" value="Submit">Add
+    </button>
+
+</form>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+        $.get('/funds/listOfInvestor/', function (data) {
+            for (var j = 0; j < data.listOfInvestors.length; j++) {
+                $('#comp_name').append('<option value="' + data.listOfInvestors[j].invest_id + '">' + data.listOfInvestors[j].comp_name + '</option>');
+            }
+        });
+
+        $('formData').submit(function(event) {
+
+            // get the form data
+            // there are many ways to get this data using jQuery (you can use the class or id also)
+            var e = document.getElementById("comp_name");
+            var strUser = e.options[e.selectedIndex].value;
+            var formData = {
+                'projectname'              : $('input[name=pro_name]').val(),
+                'principalinvestigator'             : $('input[name=princ_invest]').val(),
+                'projectdirector'    : $('input[name=pro_direc]').val(),
+                'amountinvested' : $('input[name=amount_invest]').val(),
+                'comp_name_id':     strUser
+            };
+
+            $.ajax({
+                type        : 'POST',
+                url         : '/projects/add',
+                data        : formData,
+                dataType    : 'json',
+                encode          : true
+            })
+                    .done(function(data) {
+
+                        console.log(data);
+
+                    });
+
+            event.preventDefault();
+        });
+
+</script>
+
