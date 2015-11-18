@@ -6,6 +6,10 @@ router.get('/addArtifact', function (req,res,next) {
     res.render('artifact');
 });
 
+router.get('/list',function(req,res,next){
+   res.render('artifactlist');
+});
+
 router.get('/',function(req,res,next){
 
     artifact.getAllArtifacts(function(err,artifact){

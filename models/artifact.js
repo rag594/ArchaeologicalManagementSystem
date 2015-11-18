@@ -13,7 +13,7 @@ function getAllArtifacts(cb){
             return;
         }
     var query = "Select a.object_type,a.recorde_name,a.date,a.description,a.latitude,a.longitude,l.lot_id from artifact_desc as a " +
-                "INNER JOIN artifact as l on l.artifact_id = a.artifact_id";
+                "INNER JOIN artifac as l on l.artifact_id = a.artifact_id";
 
     conn.query(query,function(err,rows){
         conn.release();

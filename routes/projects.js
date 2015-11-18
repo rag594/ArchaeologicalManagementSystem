@@ -6,6 +6,10 @@ router.get('/add', function (req, res, next) {
     res.render('project');
 });
 
+router.get('/list', function (req,res,next) {
+
+    res.render('projectlist');
+});
 
 router.post('/add', function (req, res, next) {
 

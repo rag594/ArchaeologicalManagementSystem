@@ -7,6 +7,10 @@ router.get('/add',function(req,res,next){
    res.render('site');
 });
 
+router.get('/list', function (req,res,next) {
+
+    res.render('sitelist');
+});
 
 router.get('/addSurveyDetails', function (req, res, next) {
    res.render('survey');

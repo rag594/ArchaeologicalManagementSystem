@@ -1,22 +1,66 @@
 <html>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
+          integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+            integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+            crossorigin="anonymous"></script>
+    <style>
+        /*.mar-top {*/
+        /*margin-top: 70px*/
+        /*}*/
+    </style>
+</head>
 <body>
-<form action='/site/addNewLot/' method="post" id="formData">
-    average maximum depth:<input type="text" name="max_depth"><br>
-    lot name:<input type="text" name="lot_name"><br>
-    <select id="fno" name="fno">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/projects/add">Add A Project</a></li>
+                <li><a href="/site/add">Add a Site</a></li>
+                <li><a href="/site/addSurveyDetails">Add Survey Details</a></li>
+                <li class="active"><a href="/site/addNewLot">Create a Lot</a></li>
+                <li><a href="/artifacts/addArtifact">Add Artifact</a></li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+<div class="container">
+<form action="/site/addNewLot" method="post" id="formData">
+
+    <div class="form-group mar-top">
+    <input type="text" placeholder="average maximum depth" class="form-control" name="max_depth"><br>
+    </div>
+    <div class="form-group mar-top">
+    <input type="text" placeholder="Lot name" class="form-control" name="lot_name"><br>
+    </div>
+    <div class="form-group mar-top">
+    <select id="fno" name="fno" class="form-control">
         <option value="" disabled selected>Choose field or site</option>
     </select><br>
-
-    <select id="cno" name="cno">
+        </div>
+<div class="form-group mar-top">
+    <select id="cno" name="cno" class="form-control">
         <option value="" disabled selected>Choose context</option>
     </select><br>
-
+    </div>
+<div class="form-group mar-top">
     <button type="submit" id="submitButton"
-            name="submitButton" value="Submit">Add
+            name="submitButton" value="Submit" class="btn btn-default">Add
     </button>
-
+</div>
 </form>
+</div>
 </body>
 </html>
 
@@ -59,7 +103,7 @@
             encode          : true
         })
                 .done(function(data) {
-
+                    window.location = "http:/localhost:3000/site/addNewLot";
                     console.log(data);
 
                 });

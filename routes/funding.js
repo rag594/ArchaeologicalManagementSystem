@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var funds = require('../models/fundingDetails');
 
+router.get('/list', function (req,res,next) {
+
+    res.render('fundlist');
+});
 router.get('/',function(req,res,next){
 
     funds.getFundingDetails(function(err,funds){

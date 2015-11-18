@@ -1,2 +1,78 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
+          integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+            integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+            crossorigin="anonymous"></script>
+    <style>
+        .mar-top {
+            margin-top: 70px
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/projects/list">Project Details</a></li>
+                <li><a href="/funds/list">Funding Details</a></li>
+                <li><a href="/site/list">Site Details</a></li>
+                <li><a href="/artifacts/list">Details of artifacts</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <form action='/projects/add/' method="post" id="loginform">
+
+        <div class="form-group mar-top">
+            <input type="text" class="form-control" placeholder="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="password" name="password" required>
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" id="submitButton"
+                    name="submitButton" value="Submit" class="btn btn-default">signin
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    $('#loginform').submit(function (event) {
+        event.preventDefault();
+        var credentials = {
+            username: $('#username').val(),
+            password: $('#password').val()
+        };
+        $.post("/home", credentials, function (auth) {
+                console.log(auth);
+            if (auth.s) {
+                window.location = "http://localhost:3000/projects/add"
+            }
+            else {
+                document.getElementById('username').value = "";
+                document.getElementById('password').value = "";
+            }
+        });
+    });
+</script>

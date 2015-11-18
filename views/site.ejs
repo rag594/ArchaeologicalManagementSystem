@@ -1,25 +1,82 @@
 <html>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
+          integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+            integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+            crossorigin="anonymous"></script>
+    <style>
+        .mar-top {
+            margin-top: 70px
+        }
+    </style>
+</head>
 <body>
-<form action='/site/add/' method="post" id="formData">
-    location name:<input type="text" name="location_name"><br>
-    latitude:<input type="text" name="latitude"><br>
-    longitude:<input type="text" name="longitude"><br>
-    start date:<input type="date" name="start_date"><br>
-    end date:<input type="date" name="end_date"><br>
-    <select id="pno" name="pno">
-        <option value="" disabled selected>Choose project</option>
-    </select><br>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/projects/add">Add A Project</a></li>
+                <li class="active"><a href="/site/add">Add a Site</a></li>
+                <li><a href="/site/addSurveyDetails">Add Survey Details</a></li>
+                <li><a href="/site/addNewLot">Create a Lot</a></li>
+                <li><a href="/artifacts/addArtifact">Add Artifact</a></li>
+            </ul>
+        </div>
+    </div>
 
-    <select id="cno" name="cno">
-        <option value="" disabled selected>Choose context</option>
-    </select><br>
+</nav>
+<div class="container">
+    <form action="/site/add" method="post" id="formData">
+        <div class="form-group mar-top">
+            <input type="text" class="form-control" placeholder="Location name" name="location_name"><br>
+        </div>
 
-    <button type="submit" id="submitButton"
-            name="submitButton" value="Submit">Add
-    </button>
+        <div class="form-group mar-top">
+            <input type="text" class="form-control" placeholder="latitude" name="latitude"><br>
+        </div>
 
-</form>
+        <div class="form-group mar-top">
+            <input type="text" class="form-control" placeholder="longitude" name="longitude"><br>
+        </div>
+
+        <div class="form-group mar-top">
+            <input type="date" class="form-control" placeholder="start date" name="start_date"><br>
+        </div>
+
+        <div class="form-group mar-top">
+            <input type="date" class="form-control" name="end_date"><br>
+        </div>
+
+        <div class="form-group">
+            <select id="pno" name="pno" class="form-control">
+                <option value="" disabled selected>Choose project</option>
+            </select><br>
+        </div>
+
+        <div class="form-group">
+            <select id="cno" name="cno" class="form-control">
+                <option value="" disabled selected>Choose context</option>
+            </select><br>
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" id="submitButton"
+                    name="submitButton" value="Submit" class="btn btn-default">Add
+            </button>
+        </div>
+    </form>
+</div>
 </body>
 </html>
 
@@ -38,8 +95,8 @@
         }
     });
 
-    $('formData').submit(function(event) {
-
+    $('formData').submit(function (event) {
+        event.preventDefault();
         // get the form data
         // there are many ways to get this data using jQuery (you can use the class or id also)
         var e = document.getElementById("pno");
@@ -48,25 +105,25 @@
         var c = document.getElementById("pno");
         var strUser1 = c.options[c.selectedIndex].value;
         var formData = {
-            'locationname'              : $('input[name=location_name]').val(),
-            'latitude'             : $('input[name=latitude]').val(),
-            'longitude'    : $('input[name=longitude]').val(),
-            'startdate' : $('input[name=start_date]').val(),
-            'enddate' : $('input[name=end_date]').val(),
+            'locationname': $('input[name=location_name]').val(),
+            'latitude': $('input[name=latitude]').val(),
+            'longitude': $('input[name=longitude]').val(),
+            'startdate': $('input[name=start_date]').val(),
+            'enddate': $('input[name=end_date]').val(),
 
-            'pno':     strUser,
+            'pno': strUser,
             'cno': strUser1
         };
 
         $.ajax({
-            type        : 'POST',
-            url         : '/site/add',
-            data        : formData,
-            dataType    : 'json',
-            encode          : true
+            type: 'POST',
+            url: '/site/add',
+            data: formData,
+            dataType: 'json',
+            encode: true
         })
-                .done(function(data) {
-
+                .done(function (data) {
+                    window.location = "http://localhost:3000/site/add";
                     console.log(data);
 
                 });
