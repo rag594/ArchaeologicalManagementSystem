@@ -60,7 +60,7 @@ function getSurveyMethods(cb) {
         }
         var query = "Select * from methods";
         conn.query(query, function (err, rows) {
-
+            conn.release();
             if (err) {
                 cb(err, null);
             }
@@ -78,12 +78,12 @@ function setSiteDetails(param, cb) {
             return;
         }
         async.waterfall([
-            (callback) => {
+            function (callback) {
                 conn.query("Insert into site_survey values(?,?,?,?,?,?,?)", ['', param.start_date, param.end_date, param.pno, param.latitude, param.longitude, param.location_name], (err, rows) => {
                     callback(err, rows);
                 });
             },
-            (rows, callback) => {
+            function (rows, callback) {
                 conn.query("Insert into context_methods_used SET ?", {
                     context_id: param.cno,
                     field_site_no: rows.insertId
@@ -91,7 +91,7 @@ function setSiteDetails(param, cb) {
                     callback(err, rows);
                 });
             }
-        ], (err, results) => {
+        ], function (err, results) {
             conn.release();
             cb(err, results);
         });
@@ -109,12 +109,12 @@ function addSurveyDetails(param, cb) {
         }
 
         async.waterfall([
-            (callback) => {
+            function (callback) {
                 conn.query("Insert into survey_unit values(?,?,?,?)", [param.length, param.breadth, param.fno, ''], (err, rows) => {
                     callback(err, rows);
                 });
             },
-            (rows, callback) => {
+            function (rows, callback) {
                 conn.query("Insert into methods_used SET ?", {
                     survey_unit_id: rows.insertId,
                     method_id: param.mno
@@ -122,7 +122,7 @@ function addSurveyDetails(param, cb) {
                     callback(err, rows);
                 });
             }
-        ], (err, results) => {
+        ], function (err, results) {
             conn.release();
             cb(err, results);
         });

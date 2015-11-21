@@ -4,29 +4,29 @@ var cfg = require('../config');
 var conn = mysql.createConnection(cfg.mysql);
 
 
-function makeNewlot(param,cb){
+function makeNewlot(param, cb) {
 
-    cfg.pool.getConnection(function(err,conn){
+    cfg.pool.getConnection(function (err, conn) {
 
-        if(err){
+        if (err) {
             res.json({"code": 100, "status": "Error in connection database"});
             return;
         }
         var query = "Insert into lot values(?,?,?,?,?)";
-        conn.query(query,[param.max_depth,'',parseInt(param.fno),parseInt(param.cno),param.lot_name], function (err,rows) {
-                conn.release();
-            if(err){
-                cb(err,null);
+        conn.query(query, [param.max_depth, '', parseInt(param.fno), parseInt(param.cno), param.lot_name], function (err, rows) {
+            conn.release();
+            if (err) {
+                cb(err, null);
             }
-            else{
-                cb(null,rows);
+            else {
+                cb(null, rows);
             }
         });
     });
 }
 
-function getLotById(cb){
-    cfg.pool.getConnection(function (err,conn) {
+function getLotById(cb) {
+    cfg.pool.getConnection(function (err, conn) {
 
         if (err) {
             res.json({"code": 100, "status": "Error in connection database"});
@@ -47,5 +47,5 @@ function getLotById(cb){
 
 module.exports = {
     addLot: makeNewlot,
-    getLot:getLotById
+    getLot: getLotById
 };

@@ -38,12 +38,12 @@ function addNewArtifact(param,cb){
         }
 
         async.waterfall([
-            (callback) => {
+            function(callback) {
                 conn.query("Insert into artifact_desc values(?,?,?,?,?,?,?)", ['',param.object_type,param.recorde_name,param.date,param.description,param.latitude, param.longitude], (err, rows) => {
                     callback(err, rows);
                 });
             },
-            (rows, callback) => {
+            function(rows, callback){
 
                 conn.query("Insert into artifac SET ?", {
                     artifact_id: rows.insertId,
@@ -52,7 +52,7 @@ function addNewArtifact(param,cb){
                     callback(err, rows);
                 });
             }
-        ], (err, results) => {
+        ], function(err, results) {
             conn.release();
             cb(err, results);
         });

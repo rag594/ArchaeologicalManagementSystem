@@ -6,14 +6,14 @@ var conn = mysql.createConnection(cfg.mysql);
 
 
 function listOfProjects(cb) {
-    cfg.pool.getConnection(function (err,conn) {
+    cfg.pool.getConnection(function (err, conn) {
 
-        if(err){
+        if (err) {
             res.json({"code": 100, "status": "Error in connection database"});
             return;
         }
         var query = "Select p.princ_invest,p.pro_name,p.pro_direc,i.comp_name FROM project as p " +
-                    "INNER JOIN investor as i on p.invest_id = i.invest_id";
+            "INNER JOIN investor as i on p.invest_id = i.invest_id";
 
         conn.query(query, function (err, rows) {
             conn.release();
@@ -30,8 +30,8 @@ function listOfProjects(cb) {
 
 function addProject(param, cb) {
 
-    cfg.pool.getConnection(function(err,conn) {
-        if(err){
+    cfg.pool.getConnection(function (err, conn) {
+        if (err) {
             console.log(err);
             res.json({"code": 100, "status": "Error in connection database"});
             return;
@@ -59,7 +59,7 @@ function addProject(param, cb) {
 
 function projectDetails(cb) {
 
-    cfg.pool.getConnection(function (err,conn) {
+    cfg.pool.getConnection(function (err, conn) {
 
         if (err) {
             res.json({"code": 100, "status": "Error in connection database"});
@@ -86,5 +86,5 @@ module.exports = {
 
     listOfProjects: listOfProjects,
     addProject: addProject,
-    projectDetails:projectDetails
+    projectDetails: projectDetails
 };

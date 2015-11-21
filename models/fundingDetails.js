@@ -6,33 +6,33 @@ var conn = mysql.createConnection(cfg.mysql);
 
 function fundingDetails(cb) {
 
-    cfg.pool.getConnection(function(err,conn){
+    cfg.pool.getConnection(function (err, conn) {
 
-        if(err){
+        if (err) {
             res.json({"code": 100, "status": "Error in connection database"});
             return;
         }
-    var query = "Select i.comp_name,p.pro_name,p.amount_invest from investor as i " +
-                "INNER JOIN project as p on i.invest_id = p.invest_id";
+        var query = "Select i.comp_name,p.pro_name,p.amount_invest from investor as i " +
+            "INNER JOIN project as p on i.invest_id = p.invest_id";
 
-    conn.query(query, function (err, rows) {
-        conn.release();
-        if (err) {
-            cb(err, null);
-        }
+        conn.query(query, function (err, rows) {
+            conn.release();
+            if (err) {
+                cb(err, null);
+            }
 
-        else {
-            cb(null, rows);
-        }
-    });
+            else {
+                cb(null, rows);
+            }
+        });
     });
 }
 
 
-function listOfInvestors(cb){
-    cfg.pool.getConnection(function(err,conn) {
+function listOfInvestors(cb) {
+    cfg.pool.getConnection(function (err, conn) {
 
-        if(err){
+        if (err) {
             res.json({"code": 100, "status": "Error in connection database"});
             return;
         }
@@ -51,6 +51,6 @@ function listOfInvestors(cb){
 }
 
 module.exports = {
-    getFundingDetails:fundingDetails,
-    listOfInvestors:listOfInvestors
+    getFundingDetails: fundingDetails,
+    listOfInvestors: listOfInvestors
 };
