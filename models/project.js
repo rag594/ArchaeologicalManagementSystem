@@ -12,7 +12,7 @@ function listOfProjects(cb) {
             res.json({"code": 100, "status": "Error in connection database"});
             return;
         }
-        var query = "Select p.princ_invest,p.pro_name,p.pro_direc,i.comp_name FROM project as p " +
+        var query = "Select p.pro_name,p.pro_direc,i.comp_name FROM project as p " +
             "INNER JOIN investor as i on p.invest_id = i.invest_id";
 
         conn.query(query, function (err, rows) {
@@ -37,9 +37,9 @@ function addProject(param, cb) {
             return;
         }
 
-        var query = "Insert into project values(?,?,?,?,?,?)";
+        var query = "Insert into project values(?,?,?,?,?)";
 
-        var l = ['', param.princ_invest, param.pro_name, param.pro_direc, parseInt(param.comp_name), parseInt(param.amount_invest)];
+        var l = ['',param.pro_name, param.pro_direc, parseInt(param.comp_name), parseInt(param.amount_invest)];
 
         conn.query(query, l, function (err, rows) {
 

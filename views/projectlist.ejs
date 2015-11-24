@@ -38,7 +38,6 @@
     <table class="table mar-top">
         <thead>
         <tr>
-            <th>Investigator</th>
             <th>Project Name</th>
             <th>Director</th>
             <th>Company name</th>
@@ -46,7 +45,6 @@
         </thead>
         <tbody>
         <tr>
-            <td id="pi"></td>
             <td id="pn"></td>
             <td id="pd"></td>
             <td id="ci"></td>
@@ -69,20 +67,17 @@
 <script type="text/javascript">
     $.get("/projects/listOfProjects", function (data) { // Fires an Ajax POST request
 
-        var pi = '';
         var pn = '';
         var pd = '';
         var ci = '';
 
         $.each(data.detailsOfProjects, function (index, e) {
-            pi += e.princ_invest+'<br><br>';
             pn+= e.pro_name+'<br><br>';
             pd+= e.pro_direc+'<br><br>';
             ci+= e.comp_name+'<br><br>';
             console.log(e);
         });
 
-        $("#pi").append(pi);
         $("#pn").append(pn);
         $("#pd").append(pd);
         $("#ci").append(ci);

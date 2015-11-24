@@ -27,7 +27,6 @@ function getUserDetails(param, cb) {
 
             else if (rows[0]) {
 
-                console.log(rows[0]);
                 cb(null, rows[0]);
             }
 

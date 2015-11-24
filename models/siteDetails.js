@@ -12,7 +12,7 @@ function getSiteDetails(cb) {
             res.json({"code": 100, "status": "Error in connection database"});
             return;
         }
-        var query = "Select s.field_site_no,s.start_date,s.end_date,s.pno,s.latitude,s.longitude,s.location_name,su.length,su.breadth from site_survey as s " +
+        var query = "Select s.field_site_no,s.princ_invest,s.start_date,s.end_date,s.pno,s.latitude,s.longitude,s.location_name,su.length,su.breadth from site_survey as s " +
             "INNER JOIN survey_unit as su on s.field_site_no = su.field_site_no";
 
         conn.query(query, function (err, rows) {
@@ -79,7 +79,7 @@ function setSiteDetails(param, cb) {
         }
         async.waterfall([
             function (callback) {
-                conn.query("Insert into site_survey values(?,?,?,?,?,?,?)", ['', param.start_date, param.end_date, param.pno, param.latitude, param.longitude, param.location_name], (err, rows) => {
+                conn.query("Insert into site_survey values(?,?,?,?,?,?,?,?)", ['', param.start_date, param.end_date, param.pno, param.latitude, param.longitude, param.location_name,param.princ_invest], (err, rows) => {
                     callback(err, rows);
                 });
             },

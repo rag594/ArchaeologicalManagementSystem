@@ -39,6 +39,7 @@
         <thead>
         <tr>
             <th>Field site no.</th>
+            <th>Principal Investigator</th>
             <th>start date</th>
             <th>end date</th>
             <th>project no.</th>
@@ -52,6 +53,7 @@
         <tbody>
         <tr>
             <td id="fn"></td>
+            <td id="pi"></td>
             <td id="sd"></td>
             <td id="ed"></td>
             <td id="pn"></td>
@@ -61,16 +63,6 @@
             <td id="lh"></td>
             <td id="bh"></td>
         </tr>
-        <!--<tr>-->
-        <!--<td>Mary</td>-->
-        <!--<td>Moe</td>-->
-        <!--<td>mary@example.com</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-        <!--<td>July</td>-->
-        <!--<td>Dooley</td>-->
-        <!--<td>july@example.com</td>-->
-        <!--</tr>-->
         </tbody>
     </table>
 </div>
@@ -80,6 +72,7 @@
     $.get("/site", function (data) { // Fires an Ajax POST request
 
         var fn = '';
+        var pi = '';
         var sd = '';
         var ed = '';
         var pn = '';
@@ -91,6 +84,7 @@
 
         $.each(data.siteDetails, function (index, e) {
             fn+= e.field_site_no+'<br><br>';
+            pi+= e.princ_invest+'<br><br>';
             sd+= e.start_date.slice(0,10)+'<br><br>';
             ed+= e.end_date.slice(0,10)+'<br><br>';
             pn+= e.pno+'<br><br>';
@@ -103,6 +97,7 @@
         });
 
         $("#fn").append(fn);
+        $("#pi").append(pi);
         $("#sd").append(sd);
         $("#ed").append(ed);
         $("#pn").append(pn);

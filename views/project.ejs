@@ -21,7 +21,7 @@
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">  <div class="navbar-header"> <div> <ul class="nav navbar-nav">
-                <li ><a href="/home">Home</a></li>
+                <li ><a href="/">Home</a></li>
                 <li class="active"><a href="/projects/add">Add A Project</a></li>
                 <li><a href="/site/add">Add a Site</a></li>
                 <li><a href="/site/addSurveyDetails">Add Survey Details</a></li>
@@ -37,10 +37,6 @@
 
         <div class="form-group mar-top">
             <input type="text" class="form-control" placeholder="Project Name" name="pro_name">
-        </div>
-
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Principal Investigator" name="princ_invest">
         </div>
 
         <div class="form-group">
@@ -86,7 +82,6 @@
         var strUser = e.options[e.selectedIndex].value;
         var formData = {
             'projectname': $('input[name=pro_name]').val(),
-            'principalinvestigator': $('input[name=princ_invest]').val(),
             'projectdirector': $('input[name=pro_direc]').val(),
             'amountinvested': $('input[name=amount_invest]').val(),
             'comp_name_id': strUser
