@@ -15,7 +15,10 @@
             crossorigin="anonymous"></script>
     <style>
         .mar-top {
-            margin-top: 70px
+            margin-top: 200px
+        }
+        .bttop{
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -24,7 +27,7 @@
     <div class="navbar-header">
         <div>
             <ul class="nav navbar-nav">
-                <li><a href="/home">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/projects/list">Project Details</a></li>
                 <li><a href="/funds/list">Funding Details</a></li>
                 <li><a href="/site/list">Site Details</a></li>
@@ -35,24 +38,29 @@
 </nav>
 
 <div class="container">
-    <form action='/projects/add/' method="post" id="loginform">
+    <div class="col-lg-offset-4 col-lg-4">
+
+    <form action='/' method="post" id="loginform">
 
         <div class="form-group mar-top">
-            <input type="text" class="form-control" placeholder="username" name="username" required>
+            <input type="text" class="form-control" id="username" placeholder="username" name="username" required>
         </div>
 
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="password" name="password" required>
+            <input type="password" class="form-control" id="password" placeholder="password" name="password" required>
         </div>
-
 
         <div class="form-group">
             <button type="submit" id="submitButton"
                     name="submitButton" value="Submit" class="btn btn-default">signin
             </button>
         </div>
+
     </form>
+
 </div>
+
+    </div>
 </body>
 
 </html>
@@ -64,7 +72,7 @@
             username: $('#username').val(),
             password: $('#password').val()
         };
-        $.post("/home", credentials, function (auth) {
+        $.post("/", credentials, function (auth) {
                 console.log(auth);
             if (auth.s) {
                 window.location = "http://localhost:3000/projects/add"
