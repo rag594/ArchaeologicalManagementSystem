@@ -15,7 +15,7 @@
             crossorigin="anonymous"></script>
     <style>
         .mar-top {
-            margin-top: 70px
+            margin-top: 70px;
         }
     </style>
 </head>
@@ -38,28 +38,26 @@
     <table class="table mar-top">
         <thead>
         <tr>
-            <th>Field site no.</th>
+            <th>location</th>
             <th>Principal Investigator</th>
             <th>start date</th>
             <th>end date</th>
-            <th>project no.</th>
+            <th>project name</th>
             <th>latitude</th>
             <th>longitude</th>
-            <th>location</th>
             <th>length</th>
             <th>breadth</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td id="fn"></td>
+            <td id="lc"></td>
             <td id="pi"></td>
             <td id="sd"></td>
             <td id="ed"></td>
             <td id="pn"></td>
             <td id="lt"></td>
             <td id="ln"></td>
-            <td id="lc"></td>
             <td id="lh"></td>
             <td id="bh"></td>
         </tr>
@@ -83,27 +81,24 @@
         var bh = '';
 
         $.each(data.siteDetails, function (index, e) {
-            fn+= e.field_site_no+'<br><br>';
+            lc+= e.location_name+'<br><br>';
             pi+= e.princ_invest+'<br><br>';
             sd+= e.start_date.slice(0,10)+'<br><br>';
             ed+= e.end_date.slice(0,10)+'<br><br>';
-            pn+= e.pno+'<br><br>';
+            pn+= e.pro_name+'<br><br>';
             lt+= e.latitude+'<br><br>';
             ln+= e.longitude+'<br><br>';
-            lc+= e.location_name+'<br><br>';
             lh+= e.length+'<br><br>';
             bh+= e.breadth+'<br><br>';
             console.log(e);
         });
-
-        $("#fn").append(fn);
+        $("#lc").append(lc);
         $("#pi").append(pi);
         $("#sd").append(sd);
         $("#ed").append(ed);
         $("#pn").append(pn);
         $("#lt").append(lt);
         $("#ln").append(ln);
-        $("#lc").append(lc);
         $("#lh").append(lh);
         $("#bh").append(bh);
 

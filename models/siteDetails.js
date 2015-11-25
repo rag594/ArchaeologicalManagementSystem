@@ -12,8 +12,9 @@ function getSiteDetails(cb) {
             res.json({"code": 100, "status": "Error in connection database"});
             return;
         }
-        var query = "Select s.field_site_no,s.princ_invest,s.start_date,s.end_date,s.pno,s.latitude,s.longitude,s.location_name,su.length,su.breadth from site_survey as s " +
-            "INNER JOIN survey_unit as su on s.field_site_no = su.field_site_no";
+        var query = "Select s.location_name,s.princ_invest,s.start_date,s.end_date,s.pno,s.latitude,s.longitude,su.length,su.breadth,p.pro_name from site_survey as s " +
+                    "INNER JOIN survey_unit as su on s.field_site_no = su.field_site_no "+
+                    "INNER JOIN project as p on p.pno = s.pno";
 
         conn.query(query, function (err, rows) {
             conn.release();

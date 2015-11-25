@@ -25,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/models/siteDetails.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
+              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -44,18 +44,8 @@
       <file leaf-file-name="site.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/site.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="34.291668">
-              <caret line="61" column="14" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="artifact.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/artifact.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="24.375">
-              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+            <state vertical-scroll-proportion="-15.083333">
+              <caret line="60" column="113" selection-start-line="60" selection-start-column="113" selection-end-line="60" selection-end-column="113" />
               <folding />
             </state>
           </provider>
@@ -71,21 +61,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sitelist.ejs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sitelist.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/sitelist.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0389016">
-              <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+            <state vertical-scroll-proportion="-10.625">
+              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="survey.ejs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="site.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/site.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="survey.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/survey.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.25">
-              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.82379866">
+              <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -146,13 +146,13 @@
         <option value="$PROJECT_DIR$/models/login.js" />
         <option value="$PROJECT_DIR$/views/artifact.ejs" />
         <option value="$PROJECT_DIR$/views/lot.ejs" />
-        <option value="$PROJECT_DIR$/views/survey.ejs" />
         <option value="$PROJECT_DIR$/models/project.js" />
-        <option value="$PROJECT_DIR$/views/site.ejs" />
         <option value="$PROJECT_DIR$/views/project.ejs" />
         <option value="$PROJECT_DIR$/views/projectlist.ejs" />
-        <option value="$PROJECT_DIR$/models/siteDetails.js" />
         <option value="$PROJECT_DIR$/views/sitelist.ejs" />
+        <option value="$PROJECT_DIR$/models/siteDetails.js" />
+        <option value="$PROJECT_DIR$/views/site.ejs" />
+        <option value="$PROJECT_DIR$/views/survey.ejs" />
       </list>
     </option>
   </component>
@@ -585,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/site.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.2222223">
@@ -740,18 +733,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/site.ejs">
+    <entry file="file://$PROJECT_DIR$/routes/site.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="34.291668">
-          <caret line="61" column="14" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/survey.ejs">
+    <entry file="file://$PROJECT_DIR$/views/sitelist.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.25">
-          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+        <state vertical-scroll-proportion="-10.625">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -759,15 +752,23 @@
     <entry file="file://$PROJECT_DIR$/models/siteDetails.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/sitelist.ejs">
+    <entry file="file://$PROJECT_DIR$/views/site.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0389016">
-          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+        <state vertical-scroll-proportion="-15.083333">
+          <caret line="60" column="113" selection-start-line="60" selection-start-column="113" selection-end-line="60" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/survey.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82379866">
+          <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
           <folding />
         </state>
       </provider>
