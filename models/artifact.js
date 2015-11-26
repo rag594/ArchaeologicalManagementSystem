@@ -30,7 +30,7 @@ function getAllArtifacts(cb){
 
 
 function addNewArtifact(param,cb){
-    console.log(param);
+    //console.log(param);
     cfg.pool.getConnection(function (err, conn) {
         if(err){
             res.json({"code": 100, "status": "Error in connection database"});
@@ -38,8 +38,27 @@ function addNewArtifact(param,cb){
         }
 
         async.waterfall([
-            function(callback) {
-                conn.query("Insert into artifact_desc values(?,?,?,?,?,?,?)", ['',param.object_type,param.recorde_name,param.date,param.description,param.latitude, param.longitude], (err, rows) => {
+
+            function (callback) {
+                conn.query("Insert into photo_logs values(?,?,?,?)", ['',param.body.date,param.file.originalname,'artifact'], (err, rows) => {
+                    console.log("1",err);
+                    callback(err, rows);
+                });
+            },
+
+            function(rows, callback){
+                console.log(rows.insertId);
+                conn.query("Insert into artifact_desc SET ?", {
+                    artifact_id:'',
+                    object_type:param.body.object_type,
+                    recorde_name:param.body.recorde_name,
+                    date:param.body.date,
+                    description:param.body.description,
+                    latitude:param.body.latitude,
+                    longitude:param.body.longitude,
+                    photo_id: rows.insertId
+                }, (err, rows) => {
+                    console.log("2",err);
                     callback(err, rows);
                 });
             },
@@ -47,7 +66,7 @@ function addNewArtifact(param,cb){
 
                 conn.query("Insert into artifac SET ?", {
                     artifact_id: rows.insertId,
-                    lot_id: param.lot_id
+                    lot_id: param.body.lot_id
                 }, (err, rows) => {
                     callback(err, rows);
                 });

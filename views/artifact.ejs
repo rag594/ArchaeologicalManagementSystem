@@ -30,12 +30,13 @@
                 <li><a href="/site/addSurveyDetails">Add Survey Details</a></li>
                 <li><a href="/site/addNewLot">Create a Lot</a></li>
                 <li class="active"><a href="/artifacts/addArtifact">Add Artifact</a></li>
+                <li><a href="/context/add">Add context</a></li>
             </ul>
         </div>
     </div>
 </nav>
 <div class="container">
-    <form action="/artifacts/addArtifact/" method="post" id="formData">
+    <form action="/artifacts/addArtifact" method="post" id="formData" enctype="multipart/form-data">
 
         <div class="form-group mar-top">
             <input type="text" placeholder="Type of object" class="form-control" name="object_type"><br>
@@ -68,6 +69,10 @@
         </div>
 
         <div class="form-group">
+            <input type="file" placeholder="Upload photo" class="form-control" name="photo" id="photoFile"><br>
+        </div>
+
+        <div class="form-group">
             <button type="submit" id="submitButton"
                     name="submitButton" value="Submit" class="btn btn-default">Add
             </button>
@@ -75,7 +80,7 @@
     </form>
 </div>
 </body>
-</html>
+
 
 
 <script type="text/javascript">
@@ -86,35 +91,6 @@
         }
     });
 
-    $('formData').submit(function (event) {
-        event.preventDefault();
-        var e = document.getElementById("lot_id");
-        var strUser = e.options[e.selectedIndex].value;
-        var formData = {
-            'objecttype': $('input[name=object_type]').val(),
-            'nameofrecorder': $('input[name=recorde_name]').val(),
-            'dateofrecording': $('input[name=date]').val(),
-            'description': $('input[name=description]').val(),
-            'latitude': $('input[name=latitude]').val(),
-            'longitude': $('input[name=longitude]').val(),
-            'lot_id': strUser
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: '/artifacts/addArtifact/',
-            data: formData,
-            dataType: 'json',
-            encode: true
-        })
-                .done(function (data) {
-                        window.localtion = "http:/localhost:3000/"
-                    console.log(data);
-
-                });
-
-        event.preventDefault();
-    });
-
 </script>
 
+</html>
