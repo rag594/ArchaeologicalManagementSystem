@@ -3,6 +3,11 @@ var router = express.Router();
 var artifact = require('../models/artifact');
 var fs = require('fs');
 
+router.get('/getArtifact', function (req,res,next) {
+
+    res.render('artifactByProject');
+});
+
 router.get('/addArtifact', function (req,res,next) {
     res.render('artifact');
 });
@@ -50,6 +55,18 @@ router.post('/addArtifact', function (req,res,next) {
             });
         }
     });
+});
+
+router.post('/getArtifactByLot', function (req,res,next) {
+
+    artifact.getArtifactsByLot(req.body, function (err, artifact) {
+        if(err){
+            res.json({msg:err});
+        }
+        else{
+            res.json({artifactbyLot:artifact});
+        }
+    })
 });
 
 module.exports = router;

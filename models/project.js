@@ -82,9 +82,36 @@ function projectDetails(cb) {
 }
 
 
+function sitesByProjects(param,cb){
+
+    cfg.pool.getConnection(function (err, conn) {
+
+        if (err) {
+            console.log(err);
+            res.json({"code": 100, "status": "Error in connection database"});
+            return;
+        }
+
+        var query = "Select field_site_no,location_name from site_survey where pno = ?";
+
+        conn.query(query,[parseInt(param.pno)], function (err,rows) {
+
+            if(err){
+                cb(err,null);
+            }
+            else{
+                cb(null,rows);
+            }
+        });
+
+    });
+}
+
+
 module.exports = {
 
     listOfProjects: listOfProjects,
     addProject: addProject,
-    projectDetails: projectDetails
+    projectDetails: projectDetails,
+    sitesByProjects:sitesByProjects
 };

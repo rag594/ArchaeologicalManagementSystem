@@ -45,7 +45,32 @@ function getLotById(cb) {
     });
 }
 
+
+function getLotBySite(param,cb){
+    console.log(param);
+    cfg.pool.getConnection(function (err, conn) {
+
+        if(err){
+            res.json({"code": 100, "status": "Error in connection database"});
+            return;
+        }
+
+        var query = "Select lot_id,lot_name from lot where field_site_no = ?";
+
+        conn.query(query,[parseInt(param.field_site_no)], function (err,rows) {
+           conn.release();
+            if(err){
+                cb(err,null);
+            }
+            else{
+                cb(null,rows);
+            }
+        });
+    });
+}
+
 module.exports = {
     addLot: makeNewlot,
-    getLot: getLotById
+    getLot: getLotById,
+    getLotBySite:getLotBySite
 };

@@ -28,9 +28,7 @@ function getAllArtifacts(cb){
     });
 }
 
-
 function addNewArtifact(param,cb){
-    //console.log(param);
     cfg.pool.getConnection(function (err, conn) {
         if(err){
             res.json({"code": 100, "status": "Error in connection database"});
@@ -62,6 +60,7 @@ function addNewArtifact(param,cb){
                     callback(err, rows);
                 });
             },
+
             function(rows, callback){
 
                 conn.query("Insert into artifac SET ?", {
@@ -71,10 +70,58 @@ function addNewArtifact(param,cb){
                     callback(err, rows);
                 });
             }
-        ], function(err, results) {
+        ],
+            function(err, results) {
             conn.release();
             cb(err, results);
         });
+    });
+}
+
+function getArtifacts(result,cb){
+    cfg.pool.getConnection(function(err,conn){
+
+        if(err){
+            res.json({"code": 100, "status": "Error in connection database"});
+            return;
+        }
+        var query = "Select * from artifact_desc where artifact_id = ?";
+
+        conn.query(query,[parseInt(result.artifact_id)],function(err,rows){
+            conn.release();
+            if(err){
+                cb(err,null);
+            }
+            else{
+                cb(null,rows);
+            }
+        });
+
+    });
+}
+
+function getArtifactsByLot(param,cb){
+    cfg.pool.getConnection(function(err,conn){
+
+        if(err){
+            res.json({"code": 100, "status": "Error in connection database"});
+            return;
+        }
+       var query = "Select artifact_id from artifac where lot_id = ?";
+
+        conn.query(query,[parseInt(param.lot_id)],function(err,rows){
+            conn.release();
+            if(err){
+                cb(err,null);
+            }
+            else{
+                async.map(rows,getArtifacts, function (err,artifacts) {
+
+                    cb(err,{artifacts:artifacts});
+                });
+            }
+        });
+
     });
 }
 
@@ -83,5 +130,6 @@ function addNewArtifact(param,cb){
 
 module .exports = {
     getAllArtifacts:getAllArtifacts,
-    addNewArtifact:addNewArtifact
+    addNewArtifact:addNewArtifact,
+    getArtifactsByLot:getArtifactsByLot
 };

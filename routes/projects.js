@@ -51,6 +51,20 @@ router.get('/projectDetails',function(req,res,next){
 });
 
 
+router.post('/sitesByprojects', function (req,res,next) {
+        console.log(req.body);
+    project.sitesByProjects(req.body, function (err,project) {
+
+        if(err){
+            res.json({msg:err});
+        }
+        else{
+            res.json({sites:project});
+        }
+    });
+});
+
+
 
 
 module.exports = router;
