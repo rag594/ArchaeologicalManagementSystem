@@ -8,6 +8,11 @@ router.get('/getArtifact', function (req,res,next) {
     res.render('artifactByProject');
 });
 
+router.get('/getArtifactByDate', function (req,res,next) {
+
+    res.render('artifactsByDate');
+});
+
 router.get('/addArtifact', function (req,res,next) {
     res.render('artifact');
 });
@@ -67,6 +72,19 @@ router.post('/getArtifactByLot', function (req,res,next) {
             res.json({artifactbyLot:artifact});
         }
     })
+});
+
+
+router.post('/getArtifactByDate', function (req,res,next) {
+    artifact.getArtifactByDate(req.body, function (err,artifact) {
+
+        if(err){
+            res.json({msg:err});
+        }
+        else{
+            res.json({artifactByDate:artifact});
+        }
+    });
 });
 
 module.exports = router;
